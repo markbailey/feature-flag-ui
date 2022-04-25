@@ -1,0 +1,63 @@
+$font-path: './assets/fonts/';
+
+@font-face {
+  font-family: 'Industry';
+  src: url('#{$font-path}Industry-Medium.eot');
+  src: local('Industry Medium'), local('Industry-Medium'),
+    url('#{$font-path}Industry-Medium.eot?#iefix') format('embedded-opentype'),
+    url('#{$font-path}Industry-Medium.woff') format('woff'),
+    url('#{$font-path}Industry-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+:root {
+  --white: #f5f5f5;
+  --black: #0c0c0e;
+
+  --text-color: var(--white);
+  --backgrond-color: var(--black);
+  --disabled-color: #6f7171;
+
+  --panel-color: #17181b;
+  --group-color: #28282a;
+  --control-color: #0f0f11;
+
+  --toggle-width: 56px;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+}
+
+body {
+  margin: 0;
+  font-family: 'Industry';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--backgrond-color);
+  color: var(--text-color);
+}
+
+h3 {
+  font-weight: 500;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+
+  padding: 1rem;
+}

@@ -1,57 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useCallback } from 'react';
+
+import { updateSetting } from 'store/settings';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import SettingPanel, { settingStyles } from 'components/setting-panel';
+import gridStyles from 'assets/stylesheets/grid.module.scss';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const { data: settings } = useAppSelector((state) => state.settings);
+
+  const generalSettings = settings.filter(
+    (setting) => setting.hasOwnProperty('id') || Array.isArray(setting)
+  ) as Settings[];
+
+  const settingGroups = settings.filter(
+    (setting) => typeof setting === 'object' && setting.hasOwnProperty('items')
+  ) as SettingGroup[];
+
+  const onSettingChange = useCallback(
+    (id: string, enabled: boolean, inputValue?: string) =>
+      dispatch(updateSetting({ id, enabled, inputValue })),
+    [dispatch]
+  );
+
+  const renderSetting = (data: Settings, group: string, index: number) => {
+    if (Array.isArray(data))
+      return (
+        <div key={`${group}_${index}`} className={settingStyles.group}>
+          {data.map((setting) => (
+            <SettingPanel
+              key={setting.id}
+              {...setting}
+              onChange={onSettingChange}
+            />
+          ))}
+        </div>
+      );
+
+    return <SettingPanel key={data.id} {...data} onChange={onSettingChange} />;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <h3>General</h3>
+      <div className={gridStyles.container}>
+        {generalSettings.map((setting, index) =>
+          renderSetting(setting, 'general', index)
+        )}
+      </div>
+      <br />
+
+      <div className={gridStyles.container}>
+        {settingGroups.map(({ label, items }, indexA) => (
+          <div key={`${label}_${indexA}`}>
+            <h3>{label}</h3>
+            {items.map((setting, indexB) =>
+              renderSetting(setting, `${label}_${indexA}`, indexB)
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

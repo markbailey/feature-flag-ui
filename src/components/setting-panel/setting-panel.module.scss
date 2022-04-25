@@ -1,0 +1,110 @@
+.root {
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.panel {
+  --columns: 1fr var(--toggle-width);
+
+  display: grid;
+  grid-template-columns: var(--columns);
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+  background-color: var(--panel-color);
+  border-radius: 0.25rem;
+}
+
+.hasControl {
+  --columns: 1fr minmax(min-content, max-content) var(--toggle-width);
+}
+
+.hasChildren {
+  > .panel {
+    position: relative;
+    isolation: isolate;
+    padding-right: 3rem;
+  }
+
+  > .panel::after {
+    --rotate: 0deg;
+
+    content: '';
+    z-index: 99;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+
+    width: 32px;
+    height: 32px;
+
+    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%2024%2024%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23ffffff%22%3E%3Cpath%20d%3D%22M24%2024H0V0h24v24z%22%20fill%3D%22none%22%20opacity%3D%22.87%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16.59%208.59L12%2013.17%207.41%208.59%206%2010l6%206%206-6-1.41-1.41z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    transform: translate(0.5rem, -50%) rotate(var(--rotate));
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.open {
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+  border-bottom: 1px solid var(--group-color);
+
+  &.panel::after {
+    --rotate: 180deg;
+  }
+}
+
+.label {
+  margin-left: 2rem;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.75;
+}
+
+.group {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--group-color);
+  border-radius: 0.25rem;
+}
+
+.control {
+  background-color: var(--control-color);
+  color: var(--text-color);
+
+  padding: 0.35rem 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+
+  &[disabled] {
+    --control-color: var(--disabled-color);
+    --text-color: #ccc;
+  }
+}
+
+.group > *,
+.root .root {
+  margin-bottom: 0 !important;
+}
+
+.root .root {
+  &:not(:last-child) {
+    .panel {
+      border-radius: 0rem;
+    }
+  }
+
+  &:last-child {
+    .panel {
+      border-top-left-radius: 0rem;
+      border-top-right-radius: 0rem;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.root {
+  background-color: transparent;
+  display: flex;
+  flex: 0 0 auto;
+  height: 24px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: var(--toggle-width);
+
+  input[type='checkbox'] {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  label {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.text {
+  background-color: #6f7171;
+  border-radius: 50px;
+  box-sizing: border-box;
+  display: block;
+  flex: 0 0 auto;
+  height: 24px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 56px;
+}
+
+.handle {
+  background-color: white;
+  border-radius: 18px;
+  display: block;
+  height: 20px;
+  margin: 2px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+  transition-property: transform;
+  width: 20px;
+}
+
+.root input[type='checkbox']:checked {
+  ~ .text {
+    background-color: #5b9eff;
+  }
+  ~ .handle {
+    transform: translateX(32px);
+  }
+}

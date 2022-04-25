@@ -1,0 +1,123 @@
+[
+  {
+    "id": "qEqmsAtnYi0VGAZ6vcVW/g==",
+    "label": "Case Management",
+    "enabled": false
+  },
+  {
+    "id": "1xX9qrmkwsFuYwFAJ9NnHQ==",
+    "label": "Map Timeline",
+    "enabled": false
+  },
+  {
+    "id": "essQPMqysnrhbS+MUAe0yQ==",
+    "label": "Views & Briefings",
+    "enabled": false
+  },
+  {
+    "id": "fKuxVYhpzFcJ7IeBN++XvA==",
+    "label": "Notifications",
+    "enabled": false
+  },
+  {
+    "id": "hXl37FseW17XAEr3clQkAA==",
+    "label": "Mass Communications",
+    "enabled": false
+  },
+  {
+    "id": "yMy60assTdbmluvWh3p+Mg==",
+    "label": "Traffic Cameras",
+    "enabled": false
+  },
+  {
+    "label": "Settings",
+    "items": [
+      [
+        {
+          "id": "PS7LA6DdNnIVTpv/S/xsQw==",
+          "label": "Audit Logs",
+          "enabled": false
+        },
+        {
+          "id": "EzZNnqZM+ATxieNtASsK1Q==",
+          "label": "User",
+          "enabled": false
+        }
+      ]
+    ]
+  },
+  {
+    "label": "Settings",
+    "items": [
+      [
+        {
+          "id": "sp90KxpjnRWIkUJdq9cmKg==",
+          "label": "Audit Logs",
+          "enabled": false
+        },
+        {
+          "id": "R4JfveY7zfYA51/XVWGOTw==",
+          "label": "User",
+          "enabled": false,
+          "children": [
+            {
+              "id": "Z5FW5IDVM/4iD87XOoiffg==",
+              "label": "Users Add",
+              "enabled": false
+            },
+            {
+              "id": "fyMF5RFCmMBPTABfD5Vtaw==",
+              "label": "User Delete",
+              "enabled": false
+            },
+            {
+              "id": "J32NqFMSArrLzUaz2fjhww==",
+              "label": "Users Edit",
+              "enabled": false
+            },
+            {
+              "id": "wdot4/GrXLNUUSbxQUWAqw==",
+              "label": "Max Users",
+              "enabled": false,
+              "additionalControl": {
+                "tagName": "select",
+                "value": "",
+                "options": [
+                  { "text": "10", "value": 10 },
+                  { "text": "20", "value": 20 },
+                  { "text": "30", "value": 30 }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "label": "Alerts",
+    "items": [
+      [
+        {
+          "id": "1VODLE3I0Ll+4g3J8K8WTQ==",
+          "label": "Alert Manager",
+          "enabled": false
+        },
+        {
+          "id": "plFrpexKNY2rLJo8pkKwMg==",
+          "label": "Alert Rules",
+          "enabled": false,
+          "additionalControl": {
+            "tagName": "select",
+            "value": "",
+            "options": [
+              { "text": "10", "value": 10 },
+              { "text": "20", "value": 20 },
+              { "text": "30", "value": 30 }
+            ]
+          }
+        }
+      ]
+    ]
+  }
+]
